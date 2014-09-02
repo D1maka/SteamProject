@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using SteamProject.Utils;
+using SteamProject.DataObjects;
 
 namespace ConsoleTest
 {
@@ -14,7 +15,7 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
             string response = HttpRequestUtils.GetValue("http://api.steampowered.com/ISteamApps/GetAppList/v0001/", string.Empty, 1000, null, null);
-            Console.WriteLine(response);
+            Result result = JsonParseUtils<Result>.ParseAlone(response);
             Console.ReadKey();
         }
     }
