@@ -5,17 +5,17 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using SteamProject.Utils;
 
-namespace Console
+namespace ConsoleTest
 {
     class Program
     {
         static void Main(string[] args)
         {
-            using (SqlConnection sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["SteamProjectConnectionString"].ToString()))
-            {
-                sqlCon.Open();
-            }            
+            string response = HttpRequestUtils.GetValue("http://api.steampowered.com/ISteamApps/GetAppList/v0001/", string.Empty, 1000, null, null);
+            Console.WriteLine(response);
+            Console.ReadKey();
         }
     }
 }
